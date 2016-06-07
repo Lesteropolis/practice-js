@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<h1>Choose your pokemon</h1>
+
+	<button>Charmander</button>
+	<button>Bulbasaur</button>
+	<button>Squirtle</button>
+
+	<div class="result hidden"></div>
+
+	<script type="text/javascript">
+		
+	var game = false;
+	var playerScore = 0;
+	var compScore = 0;
+
+	while (game != true){
+	  var userChoice = prompt("Pick your poison: Rock, paper, or scissors. Type 'exit' to quit.");
+	  
+	  if(!userChoice ){
+	    alert("I assume you don't want to play"); //user didn't enter anything
+	    game = true;
+	  }
+	  else
+	   userChoice=  userChoice.toLowerCase();
+
+	  if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors")
+	  {
+	    var computerChoice = randomizeComputer();
+	    console.log("You chose: " + userChoice);
+	    console.log("Computer chose: " + computerChoice);
+	    compare(userChoice);
+	    console.log('You : ' + playerScore + '    |     Computer :' + compScore); 
+	    //display scoreboard
+	    console.log('------------------------------------------------------');
+	  } else if (userChoice === "exit"){
+	      console.log("Thanks for playing");
+	      game = true;
+	  } else {
+	    console.log("Sorry, you typed something we couldn't recognize");
+	  }
+	}
+
+
+	function compare (choice){
+
+	  //If it's the same thing
+	  if (choice === computerChoice){
+	    return console.log("It's a tie");
+	  } 
+
+	  //If user chooses rock
+	  if (choice === "rock"){
+
+	    if (computerChoice === "scissors"){
+	        playerScore = playerScore +1;
+	        return console.log("You win!");
+	    } else if (computerChoice === "paper"){
+	        compScore = compScore +1;
+	        return console.log("You lose!");
+	    }
+	  }
+
+	  //If user chooses paper
+	  if (choice === "paper"){
+
+	    if (computerChoice === "rock"){
+	        playerScore = playerScore +1;
+	        return console.log("You win!");
+
+	    } else if (computerChoice === "scissors"){
+	        compScore = compScore +1;
+	        return console.log("You lose!");
+	    }
+	  }
+
+	  //If user chooses scissors
+	  if (choice === "scissors"){
+
+	    if (computerChoice === "paper"){
+	        playerScore = playerScore +1;
+	        return console.log("You win!");
+
+	    } else if (computerChoice === "rock"){
+	        compScore = compScore +1;
+	        return console.log("You lose!");
+	    }
+	  }
+	}
+
+	//Randomizes 
+	function randomizeComputer () {
+	  var i = Math.floor(Math.random() * 3 + 1);
+	  if (i === 1){
+	    return "rock";
+	  } else if (i === 2){
+	    return"paper";
+	  } else {
+	    return "scissors";
+	  }
+	}   
+
+
+	</script>
+</body>
+</html>
